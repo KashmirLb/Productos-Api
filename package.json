@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+    "firebase-tools": "^11.29.1",
     "nodemon": "^2.0.22"
   }
 }
