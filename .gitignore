@@ -9,5 +9,4 @@ yarn-error.log*
 # local env files
 .env*.local
 
-/keys
-/build
+.env
