@@ -1,13 +1,14 @@
+import functions from 'firebase-functions'
 import express from 'express'
 import dotenv from 'dotenv'
 import userRoutes from './routes/userRoutes.js'
 import cors from 'cors'
 
-const app = express()
+const firstApp = express()
 
 dotenv.config()
 
-app.use(express.json())
+firstApp.use(express.json())
 
 
 const whitelist = [
@@ -25,13 +26,13 @@ const corsOptions = {
     }
 }
 
-app.use(cors())
+firstApp.use(cors())
 
 // Routing
 
-app.use("/api/users", userRoutes)
+firstApp.use("/api/users", userRoutes)
 
-app.get("/test", (req, res) =>{
+firstApp.get("/test", (req, res) =>{
     res.send("It works!")
 })
 
@@ -39,4 +40,8 @@ app.get("/test", (req, res) =>{
 const PORT = process.env.PORT || 4000
 
 
-app.listen(PORT, ()=> console.log("Server connected on",PORT))
+// firstApp.listen(PORT, ()=> console.log("Server connected on",PORT))
+
+const app = functions.https.onRequest(firstApp)
+
+export default app
