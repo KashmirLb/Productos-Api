@@ -23,7 +23,7 @@ const createUser = async (req, res) =>{
 
 const getStore = async(req, res) =>{
 
-    const snapshot = await db.collection('tiendas-productos').doc("CvCdzQB066h4Rg4KXfYf").collection("Productos").get()
+    const snapshot = await db.collection('productos').get()
 
     let data = []
     
