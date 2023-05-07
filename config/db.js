@@ -1,4 +1,4 @@
-import { initializeApp, cert, getApps } from "firebase-admin/app";
+import { initializeApp, cert, getApps, deleteApp } from "firebase-admin/app";
 import { getFirestore } from 'firebase-admin/firestore'
 import { readFile } from 'fs/promises'
 
@@ -8,7 +8,12 @@ const createDbConnection = async db =>{
     
     const serviceAccount = JSON.parse(file)
 
-    if(getApps?.length == 0){
+    try{
+        deleteApp();
+    }
+    catch{}
+
+    try{
         initializeApp({
           credential: cert(serviceAccount)
         });
@@ -16,15 +21,14 @@ const createDbConnection = async db =>{
         const connection = getFirestore();
         return connection
     }
-    else{
+    catch{
         try{
             let fireApp = initializeApp({
-                credential: cert(serviceAccount)
-              }, db);
-      
-              const connection = getFirestore(fireApp);
-              return connection
-
+              credential: cert(serviceAccount)
+            }, db);
+          
+            const connection = getFirestore(fireApp);
+            return connection
         }
         catch{
             return null
