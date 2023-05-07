@@ -1,4 +1,4 @@
-import { initializeApp, cert, getApps, deleteApp, getApp, clearAllApps } from "firebase-admin/app";
+import { initializeApp, cert, getApps, deleteApp, getApp } from "firebase-admin/app";
 import { getFirestore } from 'firebase-admin/firestore'
 import { readFile } from 'fs/promises'
 
