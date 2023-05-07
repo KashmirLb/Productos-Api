@@ -40,7 +40,7 @@ const getProducts = async (req, res) => {
 
     if(req.body.tienda){
 
-        const snapshot = await db.collection('tiendas-productos').doc(req.body.tienda).collection("Productos").get()
+        const snapshot = await db.collection('productos').get()
     
         snapshot.forEach((doc) => {
             data.push(doc)
