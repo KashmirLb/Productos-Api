@@ -12,3 +12,5 @@ yarn-error.log*
 .firebase*
 
 .env
+
+.firekey*

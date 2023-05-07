@@ -1,16 +1,10 @@
-import { initializeApp, cert} from "firebase-admin/app";
-import { getFirestore } from 'firebase-admin/firestore'
-import { serviceAccount } from "../.firebaseKey.js"
-
-initializeApp({
-  credential: cert(serviceAccount)
-});
-
-const db = getFirestore();
+import createDbConnection from "../config/db.js";
 
 const getProducts = async (req, res) => {
-    
+
     let data = []
+
+    const db = await createDbConnection(req.body.tienda)
 
     const snapshot = await db.collection('productos').get()
 

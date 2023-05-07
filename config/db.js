@@ -1,15 +1,20 @@
-import { initializeApp, applicationDefault, cert } from "firebase-admin/app";
-import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore'
+import { initializeApp, cert} from "firebase-admin/app";
+import { getFirestore } from 'firebase-admin/firestore'
+import { readFile } from 'fs/promises'
 
-initializeApp();
+const createDbConnection = async db =>{
 
-const db = getFirestore();
+    const file = await readFile(`.firekey-${db}.json`)
+    
+    const serviceAccount = JSON.parse(file)
+    
+    initializeApp({
+      credential: cert(serviceAccount)
+    });
+    
+    const connection = getFirestore();
 
-const docRef = db.collection('users').doc('alovelace');
+    return connection
+}
 
-await docRef.set({
-    first: "Ada",
-    last: "Lovelace",
-    born: 1897
-});
-
+export default createDbConnection

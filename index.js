@@ -4,11 +4,8 @@ import productoRoutes from './routes/productoRoutes.js'
 import cors from 'cors'
 
 const app = express()
-
 dotenv.config()
-
 app.use(express.json())
-
 
 const whitelist = [
     process.env.FRONTEND_URL,
