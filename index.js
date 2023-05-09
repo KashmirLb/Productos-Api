@@ -7,7 +7,9 @@ const app = express()
 dotenv.config()
 app.use(express.json())
 
-const whitelist = JSON.parse(process.env.WHITELIST_URL)
+const whitelist = [
+    process.env.WHITELIST_URL,
+]
 
 console.log(whitelist)
 
