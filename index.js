@@ -9,6 +9,8 @@ app.use(express.json())
 
 const whitelist = JSON.parse(process.env.WHITELIST_URL)
 
+console.log(whitelist)
+
 const corsOptions = {
     origin: function(origin, callback){
         if(whitelist.includes(origin)){
