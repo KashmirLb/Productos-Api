@@ -11,6 +11,7 @@ const whitelist = JSON.parse(process.env.WHITELIST_URL);
 
 const corsOptions = {
     origin: function(origin, callback){
+        console.log(origin)
         let nameIncluded = whitelist.map(i => i.includes(origin))
         if(nameIncluded.includes(true)){
             callback(null,true)
@@ -20,7 +21,7 @@ const corsOptions = {
         }
     }
 }
-app.use(cors())
+app.use(cors(corsOptions))
 
 // Routing
 app.use("/api/productos", productoRoutes)
