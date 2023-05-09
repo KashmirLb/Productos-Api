@@ -2,7 +2,6 @@ import express from 'express'
 import dotenv from 'dotenv'
 import productoRoutes from './routes/productoRoutes.js'
 import cors from 'cors'
-import util from 'util'
 
 const app = express()
 dotenv.config()
@@ -12,17 +11,16 @@ const whitelist = JSON.parse(process.env.WHITELIST_URL);
 
 const corsOptions = {
     origin: function(origin, callback){
-   
-            console.log(origin)
-        
         let nameIncluded = whitelist.map(i => i.includes(origin))
-     
+        if(nameIncluded.includes(true)){
             callback(null,true)
-        
-   
+        }
+        else{
+            callback(new Error("CORS error"))
+        }
     }
 }
-app.use(cors(corsOptions))
+app.use(cors())
 
 // Routing
 app.use("/api/productos", productoRoutes)

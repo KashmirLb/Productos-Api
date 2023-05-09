@@ -1,25 +1,15 @@
 import express from 'express'
 import { getProducts } from '../controllers/productosController.js'
-import util from 'util'
+import checkToken from '../middleware/checkToken.js'
+
 
 const router = express.Router()
 
 // Get productos
 
-router.post("/get-products", getProducts)
-router.get("/get-connection", (req, res) => {
-
-    const whitelist = JSON.parse(process.env.WHITELIST_URL);
-
-        console.log('my boject')
-    
-
-    let nameIncluded = whitelist.map(i => i.includes(req.headers.host))
-
-    if(nameIncluded.includes(true)){
-        return res.json({ data: "Connected!"})   
-    }
-    return res.json({ data: "Not included"})
+router.post("/get-products", checkToken, getProducts)
+router.get("/get-connection", checkToken, async (req, res) => {
+    return res.json({ data: "Reached data!"})
 })
 
 export default router
