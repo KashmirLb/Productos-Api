@@ -7,9 +7,7 @@ const app = express()
 dotenv.config()
 app.use(express.json())
 
-const whitelist = [
-    process.env.FRONTEND_URL,
-]
+const whitelist = JSON.parse(process.env.WHITELIST_URL)
 
 const corsOptions = {
     origin: function(origin, callback){
@@ -21,8 +19,7 @@ const corsOptions = {
         }
     }
 }
-
-app.use(cors())
+app.use(cors(corsOptions))
 
 // Routing
 app.use("/api/productos", productoRoutes)

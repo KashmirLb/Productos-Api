@@ -8,5 +8,4 @@ const router = express.Router()
 
 router.post("/get-products", getProducts)
 
-
 export default router
