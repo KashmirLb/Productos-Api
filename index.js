@@ -20,7 +20,7 @@ const corsOptions = {
         }
     }
 }
-app.use(cors())
+app.use(cors(corsOptions))
 
 // Routing
 app.use("/api/productos", productoRoutes)
