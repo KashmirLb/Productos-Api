@@ -12,7 +12,12 @@ router.get("/get-connection", (req, res) => {
     const whitelist = JSON.parse(process.env.WHITELIST_URL);
 
     console.log(whitelist)
-    console.log(req.headers)
+    console.log(req.hostname)
+    console.log(req.ip)
+    console.log(req.baseUrl)
+    console.log(req.rawHeaders)
+    console.log(req.xhr)
+    console.log(req.url)
 
     let nameIncluded = whitelist.map(i => i.includes(req.headers.host))
 
