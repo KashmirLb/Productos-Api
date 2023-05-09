@@ -20,6 +20,5 @@ const getProducts = async (req, res) => {
 }
  
 export {
-    getProducts,
-    getOrigin
+    getProducts
 }
