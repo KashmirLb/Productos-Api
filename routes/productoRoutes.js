@@ -10,7 +10,10 @@ router.post("/get-products", getProducts)
 router.get("/get-connection", (req, res) => {
 
     const whitelist = JSON.parse(process.env.WHITELIST_URL);
-    console.log(req.headers.origin)
+    if(req.headers.origin){
+
+        console.log(JSON.stringify(req.headers.origin))
+    }
 
     let nameIncluded = whitelist.map(i => i.includes(req.headers.host))
 
