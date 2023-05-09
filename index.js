@@ -7,19 +7,6 @@ const app = express()
 dotenv.config()
 app.use(express.json())
 
-const whitelist = JSON.parse(process.env.WHITELIST_URL);
-
-const corsOptions = {
-    origin: function(origin, callback){
-        let nameIncluded = whitelist.map(i => i.includes(origin))
-        if(nameIncluded.includes(true)){
-            callback(null,true)
-        }
-        else{
-            callback(new Error("CORS error"))
-        }
-    }
-}
 app.use(cors())
 
 // Routing
