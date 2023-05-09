@@ -13,7 +13,8 @@ const corsOptions = {
     origin: function(origin, callback){
         if(origin){
 
-            console.log(JSON.stringify(origin))
+            const or = JSON.stringify({origin})
+            console.log(or)
         }
         let nameIncluded = whitelist.map(i => i.includes(origin))
         if(nameIncluded.includes(true)){

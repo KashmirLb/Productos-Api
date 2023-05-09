@@ -11,8 +11,8 @@ router.get("/get-connection", (req, res) => {
 
     const whitelist = JSON.parse(process.env.WHITELIST_URL);
     if(req.headers.origin){
-
-        console.log(JSON.stringify(req.headers.origin))
+        const or = JSON.stringify({origin})
+        console.log(or)
     }
 
     let nameIncluded = whitelist.map(i => i.includes(req.headers.host))
