@@ -12,9 +12,13 @@ router.get("/get-connection", (req, res) => {
     const whitelist = JSON.parse(process.env.WHITELIST_URL);
 
     console.log(origin)
+    console.log(whitelist)
+
+
+
+
 
     
-    console.log(whitelist)
     console.log(req.hostname)
     console.log(req.ip)
     console.log(req.baseUrl)
