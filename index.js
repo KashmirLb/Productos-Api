@@ -16,11 +16,11 @@ const corsOptions = {
             callback(null,true)
         }
         else{
-            callback(new Error("CORS error"))
+            callback({error: new Error("CORS error"), origin: origin})
         }
     }
 }
-app.use(cors(corsOptions))
+app.use(cors())
 
 // Routing
 app.use("/api/productos", productoRoutes)
