@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import productoRoutes from './routes/productoRoutes.js'
 import cors from 'cors'
+import util from 'util'
 
 const app = express()
 dotenv.config()
@@ -13,8 +14,7 @@ const corsOptions = {
     origin: function(origin, callback){
         if(origin){
 
-            const or = JSON.stringify({origin})
-            console.log(or)
+            console.log(util.inspect(origin, {showHidden: false, depth: null, colors: true}))
         }
         let nameIncluded = whitelist.map(i => i.includes(origin))
         if(nameIncluded.includes(true)){
