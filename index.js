@@ -12,17 +12,14 @@ const whitelist = JSON.parse(process.env.WHITELIST_URL);
 
 const corsOptions = {
     origin: function(origin, callback){
-        if(origin){
-
-            console.log(util.inspect(origin, {showHidden: false, depth: null, colors: true}))
-        }
+   
+            console.log(origin)
+        
         let nameIncluded = whitelist.map(i => i.includes(origin))
-        if(nameIncluded.includes(true)){
+     
             callback(null,true)
-        }
-        else{
-            callback({error: new Error("CORS error"), origin: origin})
-        }
+        
+   
     }
 }
 app.use(cors(corsOptions))
